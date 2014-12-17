@@ -98,3 +98,17 @@ class Dialog {
 ```
 
 I'll keep the random board generation for this increment to make it easy for the user to see there is actually something happening when she presses the button.
+
+# Increment #3
+There is a feature missing from the interactions so far: a message. The players should be informed whose turn it is.
+
+No new function is necessary for that, but instead I change the type of the data flowing to the dialog. So far it's only a board, but from now on it's a _Gamestate_:
+
+```
+class Gamestate {
+	public Board Board;
+	public string Message;
+}
+```
+
+The message informs about the current player, a win, the end of game, or an error. There are only a couple of different messages, so they could be encoded as an enum. But I'll go for the simpler _string_.
