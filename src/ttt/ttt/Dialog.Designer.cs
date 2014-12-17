@@ -38,6 +38,7 @@
             this.btnField7 = new System.Windows.Forms.Button();
             this.btnField8 = new System.Windows.Forms.Button();
             this.btnNewGame = new System.Windows.Forms.Button();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnField0
@@ -123,7 +124,7 @@
             // 
             // btnNewGame
             // 
-            this.btnNewGame.Location = new System.Drawing.Point(21, 186);
+            this.btnNewGame.Location = new System.Drawing.Point(21, 212);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(153, 23);
             this.btnNewGame.TabIndex = 9;
@@ -131,11 +132,21 @@
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(21, 187);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(16, 13);
+            this.lblMessage.TabIndex = 10;
+            this.lblMessage.Text = "...";
+            // 
             // Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(195, 225);
+            this.ClientSize = new System.Drawing.Size(195, 250);
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.btnField8);
             this.Controls.Add(this.btnField7);
@@ -149,6 +160,7 @@
             this.Name = "Dialog";
             this.Text = "Tic Tac Toe";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -164,6 +176,7 @@
         private System.Windows.Forms.Button btnField7;
         private System.Windows.Forms.Button btnField8;
         private System.Windows.Forms.Button btnNewGame;
+        private System.Windows.Forms.Label lblMessage;
     }
 }
 

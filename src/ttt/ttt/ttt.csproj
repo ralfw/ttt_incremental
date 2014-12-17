@@ -44,14 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
+    <Compile Include="data\Board.cs" />
     <Compile Include="Dialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialog.Designer.cs">
       <DependentUpon>Dialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fieldvalues.cs" />
+    <Compile Include="data\Fieldvalues.cs" />
+    <Compile Include="data\Gamestate.cs" />
     <Compile Include="Interactions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

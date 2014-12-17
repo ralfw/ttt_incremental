@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ttt.data;
 
 namespace ttt
 {
@@ -33,11 +34,12 @@ namespace ttt
         }
 
 
-        public void Display(Board board)
+        public void Display(Gamestate gamestate)
         {
-            for (int i = 0; i < board.Fieldvalues.Length; i++)
-                _fieldbuttons[i].Text = board.Fieldvalues[i] == Fieldvalues.Empty ? " " : 
-                                        board.Fieldvalues[i] == Fieldvalues.X ? "X" : "O";
+            for (int i = 0; i < gamestate.Board.Fieldvalues.Length; i++)
+                _fieldbuttons[i].Text = gamestate.Board.Fieldvalues[i] == Fieldvalues.Empty ? " " : 
+                                        gamestate.Board.Fieldvalues[i] == Fieldvalues.X ? "X" : "O";
+            lblMessage.Text = gamestate.Message;
         }
 
 

@@ -1,4 +1,4 @@
-﻿namespace ttt
+﻿namespace ttt.data
 {
     public class Board
     {

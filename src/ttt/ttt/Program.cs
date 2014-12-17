@@ -20,12 +20,12 @@ namespace ttt
             var dlg = new Dialog();
             var inter = new Interactions();
 
-            var board = inter.Start();
-            dlg.Display(board);
+            var gamestate = inter.Start();
+            dlg.Display(gamestate);
 
             dlg.On_new_game_requested += () => {
-                board = inter.New_game();
-                dlg.Display(board);
+                gamestate = inter.New_game();
+                dlg.Display(gamestate);
             };
 
             Application.Run(dlg);
