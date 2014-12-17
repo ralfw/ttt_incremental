@@ -28,6 +28,11 @@ namespace ttt
                 dlg.Display(gamestate);
             };
 
+            dlg.On_player_drew += coord => {
+                gamestate = inter.Draw(coord);
+                dlg.Display(gamestate);
+            };
+
             Application.Run(dlg);
         }
     }

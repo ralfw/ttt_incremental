@@ -49,6 +49,7 @@
             this.btnField0.Size = new System.Drawing.Size(47, 49);
             this.btnField0.TabIndex = 0;
             this.btnField0.UseVisualStyleBackColor = true;
+            this.btnField0.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField1
             // 
@@ -58,6 +59,7 @@
             this.btnField1.Size = new System.Drawing.Size(47, 49);
             this.btnField1.TabIndex = 1;
             this.btnField1.UseVisualStyleBackColor = true;
+            this.btnField1.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField2
             // 
@@ -67,6 +69,7 @@
             this.btnField2.Size = new System.Drawing.Size(47, 49);
             this.btnField2.TabIndex = 2;
             this.btnField2.UseVisualStyleBackColor = true;
+            this.btnField2.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField3
             // 
@@ -76,6 +79,7 @@
             this.btnField3.Size = new System.Drawing.Size(47, 49);
             this.btnField3.TabIndex = 3;
             this.btnField3.UseVisualStyleBackColor = true;
+            this.btnField3.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField4
             // 
@@ -85,6 +89,7 @@
             this.btnField4.Size = new System.Drawing.Size(47, 49);
             this.btnField4.TabIndex = 4;
             this.btnField4.UseVisualStyleBackColor = true;
+            this.btnField4.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField5
             // 
@@ -94,6 +99,7 @@
             this.btnField5.Size = new System.Drawing.Size(47, 49);
             this.btnField5.TabIndex = 5;
             this.btnField5.UseVisualStyleBackColor = true;
+            this.btnField5.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField6
             // 
@@ -103,6 +109,7 @@
             this.btnField6.Size = new System.Drawing.Size(47, 49);
             this.btnField6.TabIndex = 6;
             this.btnField6.UseVisualStyleBackColor = true;
+            this.btnField6.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField7
             // 
@@ -112,6 +119,7 @@
             this.btnField7.Size = new System.Drawing.Size(47, 49);
             this.btnField7.TabIndex = 7;
             this.btnField7.UseVisualStyleBackColor = true;
+            this.btnField7.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnField8
             // 
@@ -121,6 +129,7 @@
             this.btnField8.Size = new System.Drawing.Size(47, 49);
             this.btnField8.TabIndex = 8;
             this.btnField8.UseVisualStyleBackColor = true;
+            this.btnField8.Click += new System.EventHandler(this.btnField_clicked);
             // 
             // btnNewGame
             // 

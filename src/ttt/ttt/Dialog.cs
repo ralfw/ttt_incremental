@@ -33,6 +33,14 @@ namespace ttt
             On_new_game_requested();
         }
 
+        private void btnField_clicked(object sender, EventArgs e)
+        {
+            var coord = _fieldbuttons.Select((b, i) => new {Button = b, Coord = i})
+                                     .First(b => b.Button == sender)
+                                     .Coord;
+            On_player_drew(coord);
+        }
+
 
         public void Display(Gamestate gamestate)
         {
@@ -44,6 +52,6 @@ namespace ttt
 
 
         public event Action On_new_game_requested;
-
+        public event Action<int> On_player_drew;
     }
 }

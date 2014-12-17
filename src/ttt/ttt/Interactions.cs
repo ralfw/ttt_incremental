@@ -12,9 +12,14 @@ namespace ttt
 
         public Gamestate New_game()
         {
-            var gs = new Gamestate();
-            gs.Board.Fieldvalues[0] = DateTime.Now.Second % 2 == 0 ? Fieldvalues.X : Fieldvalues.O;
-            gs.Message = "Current player: " + (gs.Board.Fieldvalues[0] == Fieldvalues.X ? "O" : "X");
+            return new Gamestate {Message = "Current player: X"};
+        }
+
+        public Gamestate Draw(int coordinate)
+        {
+            var gs = New_game();
+            gs.Board.Fieldvalues[coordinate] = Fieldvalues.X;
+            gs.Message = "Current player: O";
             return gs;
         }
     }
