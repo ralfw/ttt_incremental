@@ -64,3 +64,37 @@ class Board {
 
 This increment should only "prove" I can start the application and a board gets displayed. Since an empty board is not very exciting, I'll fill it with some random data; not much logic should be required for that.
 
+# Increment #2
+Since what happens upon startup is the same as what's expected to happen by starting a new game, the new game interaction is next.
+
+![](images/incr02.png)
+
+It's obvious, the dialog needs a button for that as depicted in the requirements sketch.
+
+But there also needs to be a new functional unit _New game_ since each interaction is translated to a function (which in the diagram is represented by a "bubble").
+
+To depict that upon starting the application the same is happening as when requesting a new game, the _Start_ interaction can be refined like this:
+
+![](images/incr02b.png)
+
+The arc beneath _Start_ denotes "refinement"; it's like a pinch gesture on a smartphone to zoom in on a map.
+
+## Functions
+A function needs to be set up for the interaction. It's reused as a feature function within the previous interaction function _Start()_.
+
+But how to signal the user requested a new game? The dialog needs a way to trigger the interaction function. This is best done with an event:
+
+```
+class Interactions {
+  public Board Start();
+  public Board New_game();
+}
+
+class Dialog {
+  public void Display(Board board)
+  
+  public event Action On_new_game_requested;
+}
+```
+
+I'll keep the random board generation for this increment to make it easy for the user to see there is actually something happening when she presses the button.
