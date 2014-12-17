@@ -112,3 +112,36 @@ class Gamestate {
 ```
 
 The message informs about the current player, a win, the end of game, or an error. There are only a couple of different messages, so they could be encoded as an enum. But I'll go for the simpler _string_.
+
+# Increment #4
+Except for the random board field occupation the first two interactions are finished, I'd say. Now on to the main interaction: a player making drawing, making his move, placing his symbol on one of the board fields.
+
+This interation consists of several features. But before I turn to them I just want to insert the interaction itself into the design. It's another functional unit to be triggered by some user input on the dialog.
+
+The data flowing from the dialog into this functional unit can be the coordinate of the field the current player wants to put his symbol into. A simple index in the range 0..8 will do, I guess.
+
+And what's the output of this interaction function? Again a game state. Then no change to the dialog is necessary. The game state contains the updated board as well as a description of the game status.
+
+![](images/incr04.png)
+
+Initially making a move generates an empty board and places an X into the addressed field. To this end I'll remove the random field content generation in _New_game()_.
+
+## Functions
+Another function on class _Interactions_ is needed. And another event on the dialog to trigger it.
+
+```
+class Interactions {
+  public Gamestate Start();
+  public Gamestate New_game();
+  public Gamestate Draw(int coordinate)
+}
+
+class Dialog {
+  public void Display(Gamestate board)
+  
+  public event Action On_new_game_requested;
+  public event Action<int> On_player_drew;
+}
+```
+
+An _int_ for the coordinate leaves room for error. But I'll live with that ;-) Too bad C# does not support range types.
