@@ -23,6 +23,11 @@ namespace ttt
             var board = inter.Start();
             dlg.Display(board);
 
+            dlg.On_new_game_requested += () => {
+                board = inter.New_game();
+                dlg.Display(board);
+            };
+
             Application.Run(dlg);
         }
     }

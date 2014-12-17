@@ -27,11 +27,21 @@ namespace ttt
         }
 
 
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            On_new_game_requested();
+        }
+
+
         public void Display(Board board)
         {
             for (int i = 0; i < board.Fieldvalues.Length; i++)
                 _fieldbuttons[i].Text = board.Fieldvalues[i] == Fieldvalues.Empty ? " " : 
                                         board.Fieldvalues[i] == Fieldvalues.X ? "X" : "O";
         }
+
+
+        public event Action On_new_game_requested;
+
     }
 }
