@@ -6,7 +6,9 @@ namespace ttt
     {
         public Board Start()
         {
-            throw new NotImplementedException();
+            var board = new Board();
+            board.Fieldvalues[0] = DateTime.Now.Second%2 == 0 ? Fieldvalues.X : Fieldvalues.O;
+            return board;
         }
     }
 }

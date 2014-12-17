@@ -2,6 +2,6 @@
 {
     public class Board
     {
-        public Fieldvalues[] Fieldvalues;
+        public Fieldvalues[] Fieldvalues = new Fieldvalues[9];
     }
 }
