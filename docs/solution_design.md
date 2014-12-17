@@ -34,6 +34,10 @@ Fieldvalues[] board;
 
 The char-based solution would leave more room for errors; a wrong char could end up in the array/string. So I go with the enum-based solution.
 
+A 1D-array should be fine to pass into the dialog. It contains an element for each field indexed from 0..8. Fields are numbered from left top to right bottom in the dialog.
+
+A 2D-array would be more specific for the current layout. But then it's also a tad more limiting the display. A 1D-array also makes it easier to address individual fields with just one index.
+
 ## Functions
 The functions of the first increment can be derived from the above drawing:
 
