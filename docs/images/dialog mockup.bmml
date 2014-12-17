@@ -1,0 +1,73 @@
+<mockup version="1.0" skin="sketch" measuredW="341" measuredH="369" mockupW="281" mockupH="333">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="60" y="36" w="281" h="333" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tic%20Tac%20Toe</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Button" x="104" y="81" w="62" h="59" measuredW="40" measuredH="34" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>X</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="166" y="80" w="62" h="59" measuredW="24" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="228" y="80" w="62" h="59" measuredW="24" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="104" y="141" w="62" h="59" measuredW="24" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="166" y="140" w="62" h="59" measuredW="43" measuredH="34" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>O</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="228" y="140" w="62" h="59" measuredW="24" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Button" x="166" y="200" w="62" h="59" measuredW="24" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="228" y="200" w="62" h="59" measuredW="24" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="104" y="199" w="62" h="59" measuredW="24" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Label" x="104" y="268" w="-1" h="-1" measuredW="89" measuredH="21" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Player%20X%27s%20turn</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Button" x="104" y="298" w="186" h="27" measuredW="116" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Start%20new%20game</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
