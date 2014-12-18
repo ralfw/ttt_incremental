@@ -47,7 +47,7 @@ class Interactions {
 }
 
 class Dialog {
-  public void Display(Board board)
+  public void Display(Board board);
 }
 ```
 
@@ -91,7 +91,7 @@ class Interactions {
 }
 
 class Dialog {
-  public void Display(Board board)
+  public void Display(Board board);
   
   public event Action On_new_game_requested;
 }
@@ -133,11 +133,11 @@ Another function on class _Interactions_ is needed. And another event on the dia
 class Interactions {
   public Gamestate Start();
   public Gamestate New_game();
-  public Gamestate Draw(int coordinate)
+  public Gamestate Draw(int coordinate);
 }
 
 class Dialog {
-  public void Display(Gamestate board)
+  public void Display(Gamestate board);
   
   public event Action On_new_game_requested;
   public event Action<int> On_player_drew;
@@ -145,3 +145,62 @@ class Dialog {
 ```
 
 An _int_ for the coordinate leaves room for error. But I'll live with that ;-) Too bad C# does not support range types.
+
+# Increment #5
+The draw interaction is walking as a skelleton. Now some flesh needs to be put onto it. As the first feature to add I choose putting the symbol of the current player into the selected field.
+
+How to represent that in the design? By a functional unit of its own. The current functional unit thus should not be assumed to change internally. Instead it should be split into at least two functional units.
+
+But what these functional units? Well, the current purpose of _Draw_ is to generate a game state. This has to be kept. In addition, though, it has to be registered where the current player put his symbol.
+
+_Draw_ thus should be at least refined as follows:
+
+1. Register player's symbol in selected field.
+2. Generate game state.
+
+But does the game state really have to be generated? Isn't it present all the time? Doesn't the player's symbol get place onto the board of the game state?
+
+**No!** This would mean overloading the purpose of the board data structure. Its purpose so far is to represent where players drew their symbols for easy display. That's all.
+
+Its structure is optimized for consumption by the dialog, not for keeping domain data internally.
+
+How data is structured by the domain is an entirely different matter. It should be decoupled from how data is displayed or persisted. That's an application of the principle of Separation of Concerns (SoC), I'd say.
+
+So how could the domain data be structured? Why not just record the coordinates in a list as they come in? This would serve at least the current increment.
+
+Making the domain data structure more specific at this point might limit flexibility in the future. A list of "events" poses the least risk of painting myself into a corner. If the needs of the domain become more clear in future increments I can always let the domain data follow them by making its structure more specific.
+
+This leads to a list of coordinates as a common data structure for both functional units. The first one writes to it, the latter one transforms it into a game state.
+
+Please note: Which player made a draw is clear from the position of a coordinate in this list. All elements at an even index stem from player X.
+
+For now I'll stick with this simple rule. However that's putting the burden of identifying the players into a simple mapping functional unit. That's probably not a good idea from the point of view of the Single Responsibility Principle. If the rule changed for when players change, the mapping would have to change too - which should only be concerned with structures.
+
+But anyway... for now I'll stick with the simple approach until there is more pressure for a different distribution of logic.
+
+![](images/incr05.png)
+
+Please note: The purpose of _Draw_ now becomes just the integration of the new functional units. _Draw_ is devoid of any logic! The logic is concentrated just in the leafs of the decomposition tree. It's like a sediment gathering at the bottom.
+
+## Functions
+Two new functions and a data structure are needed. For now I keep them in the _Interactions_ class.
+
+```
+class Interactions {
+  List<int> _coordinates;
+  
+  public Gamestate Start();
+  public Gamestate New_game();
+  public Gamestate Draw(int coordinate);
+  
+  void Place_symbol(int coordinate);
+  Gamestate Generate_gamestate();
+}
+```
+
+# Increment #6
+echter spielerwechsel. muss ja eine funktion werden.
+1. nächsten/aktuellen spieler bestimmen für gamestate generierung
+2. spieler bestimmen beim registieren eines zugs. dann wird gamestate generierung einfacher.
+
+spieler in liste speichern, damit die bestimmung nicht an mehreren orten ist. jedenfalls soll sie nicht bei einem mappingliegen.
