@@ -28,5 +28,17 @@ namespace ttt.operation
             else
                 onGameOver("Game over! Both win ;-)");
         }
+
+        public void Check_for_win(Action onNoWin, Action<string> onWin)
+        {
+            if (_fieldselections.Selections.Any(fs => fs.Coordinate == 4))
+            {
+                var msg = string.Format("The winner is: {0}", 
+                                        _fieldselections.Selections.First(fs => fs.Coordinate == 4).Player.ToString());
+                onWin(msg);
+            }
+            else
+                onNoWin();
+        }
     }
 }
