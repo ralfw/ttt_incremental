@@ -334,3 +334,16 @@ Checking this is a matter of _Gamerules_ again. It should happen before checking
 Initially, though, I'll only implement fake logic. It flags a win if a player puts his symbol into the center field (index 4).
 
 ![](images/incr09.png)
+
+# Increment #10
+Checking for a win in ernest takes a moment of thinking to design.
+
+There is a fixed number of winning configurations. Each configuration can be described by three field indexes, e.g. [0,1,2] (first row), [0,3,6] (first column), [0, 4, 8] (diagonal from left top downward). Each such set of indexes can be called a line.
+
+A player wins, if the set of coordinates of fields with his symbol contains one of the fixed winning lines, e.g. if player X managed to put his symbols on fields [0, 1, 8, 4] he wins.
+
+To check if a player wins first his field coordinates need to be extracted from the selected fields. Then all lines are checked for inclusion in the coordinate set.
+
+This is done for player X, then for player O.
+
+![](images/incr10.png)
