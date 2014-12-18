@@ -201,9 +201,37 @@ class Interactions {
   Gamestate Generate_gamestate();
 }
 ```
-# Increment #6
-echter spielerwechsel. muss ja eine funktion werden.
-1. nächsten/aktuellen spieler bestimmen für gamestate generierung
-2. spieler bestimmen beim registieren eines zugs. dann wird gamestate generierung einfacher.
 
-spieler in liste speichern, damit die bestimmung nicht an mehreren orten ist. jedenfalls soll sie nicht bei einem mappingliegen.
+# Increment #6
+During requirements analysis it became clear that changing the player is a feature of the draw interaction. So far this hasn't been expressed by a function(al unit) of its own. Generating the game state is concerned with identifying the players and selecting the next one.
+
+To become congruent with the analysis changing the player has to be made explicit. The result of this is a message passed to the game state generation. This takes one burden off the mapping functionality.
+
+In order to remove the second burden - assigning a player to each registered coordinate - the player drawing has to be registered with the coordinate. That requires identifying it and warrants a functional unit of its own.
+
+![](images/incr06.png)
+
+Should the current player be kept as separate data from the list of coordinates? No. Why introduce another piece of state? As long as the drawing player is registered along with the field coordinate _Change player_ as well as _Identify current player_ can "calculate" the relevant player.
+
+## Functions
+According to the design there are two new functions needed: one to identify the current player, one to change the player. Upon closer examination, though, it turns out, only once function is needed which gets called twice. It identifies the current player before as well as after a coordinate got registered.
+
+```
+enum Players {
+  X,
+  O
+}
+
+class Interactions {
+  List<int> _coordinates;
+  
+  public Gamestate Start();
+  public Gamestate New_game();
+  public Gamestate Draw(int coordinate);
+  
+  void Place_symbol(int coordinate);
+  Gamestate Generate_gamestate();
+  
+  Players Identify_current_player();
+}
+```
