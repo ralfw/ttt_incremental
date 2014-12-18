@@ -54,7 +54,9 @@
     <Compile Include="data\Fieldvalues.cs" />
     <Compile Include="data\Gamestate.cs" />
     <Compile Include="data\FieldSelected.cs" />
-    <Compile Include="Interactions.cs" />
+    <Compile Include="data\Fieldselections.cs" />
+    <Compile Include="operation\Gamerules.cs" />
+    <Compile Include="integration\Interactions.cs" />
     <Compile Include="data\Players.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

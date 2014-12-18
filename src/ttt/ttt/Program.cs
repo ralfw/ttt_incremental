@@ -17,8 +17,10 @@ namespace ttt
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var fs = new Fieldselections();
+            var gr = new Gamerules(fs);
+            var inter = new Interactions(fs, gr);
             var dlg = new Dialog();
-            var inter = new Interactions();
 
             var gamestate = inter.Start();
             dlg.Display(gamestate);
