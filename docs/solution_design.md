@@ -182,6 +182,10 @@ But anyway... for now I'll stick with the simple approach until there is more pr
 
 Please note: The purpose of _Draw_ now becomes just the integration of the new functional units. _Draw_ is devoid of any logic! The logic is concentrated just in the leafs of the decomposition tree. It's like a sediment gathering at the bottom.
 
+Also: The two new functional units are the focus of this increment one more is involved, too. _New game_ is no longer generating a game state by itself but first resets the list of coordinates and the gets a game state generated like _Draw_.
+
+![](images/incr05b.png)
+
 ## Functions
 Two new functions and a data structure are needed. For now I keep them in the _Interactions_ class.
 
@@ -197,7 +201,6 @@ class Interactions {
   Gamestate Generate_gamestate();
 }
 ```
-
 # Increment #6
 echter spielerwechsel. muss ja eine funktion werden.
 1. nächsten/aktuellen spieler bestimmen für gamestate generierung
