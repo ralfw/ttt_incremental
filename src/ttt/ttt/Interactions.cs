@@ -7,24 +7,17 @@ namespace ttt
 {
     public class Interactions
     {
-        private List<FieldSelected> _fieldSelections;
-
-
         public Gamestate Start()
         {
             return New_game();
         }
+
 
         public Gamestate New_game()
         {
             Reset_fields();
             var player = Identify_current_player();
             return Generate_gamestate_for_player(player);
-        }
-
-        private void Reset_fields()
-        {
-            _fieldSelections = new List<FieldSelected>();
         }
 
 
@@ -42,6 +35,15 @@ namespace ttt
             return gs;
         }
 
+
+        #region domain data
+        private List<FieldSelected> _fieldSelections;
+
+        private void Reset_fields()
+        {
+            _fieldSelections = new List<FieldSelected>();
+        }
+
         private void Check_for_occupied_field(int coordinate,
                                               Action onUnoccupied,
                                               Action<string> onOccupied)
@@ -52,19 +54,23 @@ namespace ttt
                 onUnoccupied();
         }
 
+        void Place_symbol_on_field(Players player, int coordinate)
+        {
+            _fieldSelections.Add(new FieldSelected { Player = player, Coordinate = coordinate });
+        }
+        #endregion
+
+
+        #region domain rules
         private Players Identify_current_player()
         {
             if (_fieldSelections.Count == 0) return Players.X;
             return _fieldSelections.Last().Player == Players.X ? Players.O : Players.X;
         }
+        #endregion
 
 
-        void Place_symbol_on_field(Players player, int coordinate)
-        {
-            _fieldSelections.Add(new FieldSelected{Player = player, Coordinate = coordinate});
-        }
-
-
+        #region mapping
         Gamestate Generate_gamestate_for_player(Players currentPlayer)
         {
             var msg = string.Format("Player: {0}", currentPlayer.ToString());
@@ -81,5 +87,6 @@ namespace ttt
             gs.Message = statusMsg;
             return gs;
         }
+        #endregion
     }
 }
