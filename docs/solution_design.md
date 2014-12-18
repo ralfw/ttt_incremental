@@ -213,6 +213,10 @@ In order to remove the second burden - assigning a player to each registered coo
 
 Should the current player be kept as separate data from the list of coordinates? No. Why introduce another piece of state? As long as the drawing player is registered along with the field coordinate _Change player_ as well as _Identify current player_ can "calculate" the relevant player.
 
+Now that game state generation does no longer identify the current player it needs to be passed to it also upon resetting the game:
+
+![](images/incr06b.png)
+
 ## Functions
 According to the design there are two new functions needed: one to identify the current player, one to change the player. Upon closer examination, though, it turns out, only once function is needed which gets called twice. It identifies the current player before as well as after a coordinate got registered.
 
@@ -222,8 +226,13 @@ enum Players {
   O
 }
 
+class FieldSelected {
+  public Players Player;
+  public int Coordinate;
+}
+
 class Interactions {
-  List<int> _coordinates;
+  List<FieldSelected> _fieldSelections;
   
   public Gamestate Start();
   public Gamestate New_game();
@@ -235,3 +244,7 @@ class Interactions {
   Players Identify_current_player();
 }
 ```
+
+Although the enum seems to repeat what already is defined in _Fieldvalues_ it's not a violation of the DRY principle. The purpose of _Players_ and _Fieldvalues_ is different. The latter exists purely for the sake of the UI/dialog; the former, though, is an important part of the domain.
+
+This is also signified by the lack of an encoding for empty fields. There are no empty fields with regard to the domain. Empty fields are just a matter of a particular depiction of the game state.
