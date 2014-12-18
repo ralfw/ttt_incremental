@@ -311,3 +311,17 @@ And while being at it why not relieve _Main()_ of some responsibilities? I'll fo
 Here's the dependency graph (class diagram) for the resulting classes:
 
 ![](images/interlude.png)
+
+# Increment #8
+So far the players are left to themselves for determining who has one. This shall change now. And the first step in that direction is detecting whether the game is over (due to no more unoccupied fields).
+
+If the game is over an according message should be displayed; otherwise the next player is selected.
+
+Checking for "game over" of course requires its own functional unit as already found during requirements analysis.
+
+![](images/incr08.png)
+
+This feature of course is a matter of the domain; its implementation belongs in the _Gamerules_ class.
+
+## Functions
+From now on I'll no longer document which functions get added. It should be obvious from the design. Since there are classes with focused responsibilities locating a function is easy.
