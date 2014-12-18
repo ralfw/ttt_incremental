@@ -16,18 +16,24 @@ namespace ttt
 
         public Gamestate New_game()
         {
-            _coordinates = new List<int>();
+            Reset_fields();
             return Generate_gamestate();
         }
+
+        private void Reset_fields()
+        {
+            _coordinates = new List<int>();
+        }
+
 
         public Gamestate Draw(int coordinate)
         {
-            Place_symbol(coordinate);
+            Place_symbol_on_field(coordinate);
             return Generate_gamestate();
         }
 
 
-        void Place_symbol(int coordinate)
+        void Place_symbol_on_field(int coordinate)
         {
             _coordinates.Add(coordinate);
         }
