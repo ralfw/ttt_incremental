@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using ttt.data;
 
-namespace ttt
+namespace ttt.operation
 {
     class Gamerules
     {

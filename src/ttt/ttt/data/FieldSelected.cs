@@ -1,4 +1,4 @@
-﻿namespace ttt
+﻿namespace ttt.data
 {
     internal class FieldSelected
     {

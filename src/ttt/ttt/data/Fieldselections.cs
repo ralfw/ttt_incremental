@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ttt
+namespace ttt.data
 {
     class Fieldselections
     {

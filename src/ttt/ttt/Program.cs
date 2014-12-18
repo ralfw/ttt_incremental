@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ttt.data;
+using ttt.integration;
+using ttt.operation;
 
 namespace ttt
 {
@@ -19,22 +22,12 @@ namespace ttt
 
             var fs = new Fieldselections();
             var gr = new Gamerules(fs);
-            var inter = new Interactions(fs, gr);
+            var map = new Mapping(fs);
+            var inter = new Interactions(fs, gr, map);
             var dlg = new Dialog();
+            var app = new App(dlg, inter);
 
-            var gamestate = inter.Start();
-            dlg.Display(gamestate);
-
-            dlg.On_new_game_requested += () => {
-                gamestate = inter.New_game();
-                dlg.Display(gamestate);
-            };
-
-            dlg.On_player_drew += coord => {
-                gamestate = inter.Draw(coord);
-                dlg.Display(gamestate);
-            };
-
+            app.Run();
             Application.Run(dlg);
         }
     }

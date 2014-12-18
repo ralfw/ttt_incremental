@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="integration\App.cs" />
     <Compile Include="data\Board.cs" />
     <Compile Include="Dialog.cs">
       <SubType>Form</SubType>
@@ -55,6 +56,7 @@
     <Compile Include="data\Gamestate.cs" />
     <Compile Include="data\FieldSelected.cs" />
     <Compile Include="data\Fieldselections.cs" />
+    <Compile Include="integration\Mapping.cs" />
     <Compile Include="operation\Gamerules.cs" />
     <Compile Include="integration\Interactions.cs" />
     <Compile Include="data\Players.cs" />
