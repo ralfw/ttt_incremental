@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ttt.data;
 
 namespace ttt
 {
     public class Interactions
     {
-        private List<int> _coordinates;
+        private List<FieldSelected> _fieldSelections;
 
 
         public Gamestate Start()
@@ -17,34 +18,45 @@ namespace ttt
         public Gamestate New_game()
         {
             Reset_fields();
-            return Generate_gamestate();
+            var player = Identify_current_player();
+            return Generate_gamestate(player);
         }
 
         private void Reset_fields()
         {
-            _coordinates = new List<int>();
+            _fieldSelections = new List<FieldSelected>();
         }
 
 
         public Gamestate Draw(int coordinate)
         {
-            Place_symbol_on_field(coordinate);
-            return Generate_gamestate();
+            var player = Identify_current_player();
+            Place_symbol_on_field(player, coordinate);
+            player = Identify_current_player();
+            return Generate_gamestate(player);
         }
 
-
-        void Place_symbol_on_field(int coordinate)
+        private Players Identify_current_player()
         {
-            _coordinates.Add(coordinate);
+            if (_fieldSelections.Count == 0) return Players.X;
+            return _fieldSelections.Last().Player == Players.X ? Players.O : Players.X;
         }
 
 
-        Gamestate Generate_gamestate()
+        void Place_symbol_on_field(Players player, int coordinate)
+        {
+            _fieldSelections.Add(new FieldSelected{Player = player, Coordinate = coordinate});
+        }
+
+
+        Gamestate Generate_gamestate(Players currentPlayer)
         {
             var gs = new Gamestate();
-            for (var i = 0; i < _coordinates.Count; i++)
-                gs.Board.Fieldvalues[_coordinates[i]] = i%2 == 0 ? Fieldvalues.X : Fieldvalues.O;
-            gs.Message = string.Format("Player: {0}", _coordinates.Count%2 == 0 ? "X" : "O");
+            foreach (var t in _fieldSelections)
+                gs.Board.Fieldvalues[t.Coordinate] = t.Player == Players.X
+                                                         ? Fieldvalues.X
+                                                         : Fieldvalues.O;
+            gs.Message = string.Format("Player: {0}", currentPlayer.ToString());
             return gs;
         }
     }
