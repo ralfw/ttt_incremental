@@ -325,3 +325,12 @@ This feature of course is a matter of the domain; its implementation belongs in 
 
 ## Functions
 From now on I'll no longer document which functions get added. It should be obvious from the design. Since there are classes with focused responsibilities locating a function is easy.
+
+# Increment #9
+Finally the application should also check for a winning situation. A player wins if he manages to get three of his symbols in a line (vertical, horizontal, or diagonal).
+
+Checking this is a matter of _Gamerules_ again. It should happen before checking for end of game, since the last selection might be decisive.
+
+Initially, though, I'll only implement fake logic. It flags a win if a player puts his symbol into the center field (index 4).
+
+![](images/incr09.png)
