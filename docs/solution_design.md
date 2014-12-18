@@ -281,3 +281,33 @@ class Interactions {
        Action<string> onOccupied);
 }
 ```
+
+# Interlude: Class Design
+So far quite some functions have been created and put into the same class: _Interactions_. Increasingly this becomes a problem. What's the purpose of the class, do all the functions contribute to this purpose? The more methods the more lines of code the more difficult to understand the class.
+
+Some refactoring seems to be in order. Although this should not be done as a stand alone activity not delering any tangible value to the customer I'll deviate from this maxime. How to organize functions into the classes along emerging patterns becomes clearer that way.
+
+So what purpose do the methods in _Interactions_ serve? What are the different responsibilities of the class at the moment?
+
+There is the original and primary responsibility: holding the interaction functions which are _Start()_, _New_game(), and _Draw()_.
+
+Then there are two functions concerned just with mapping internal domain data to a structure fit for easy display by the dialog: _Generate_gamestate_for_...()_.
+
+The internal domain data is a list of player/coordinate pairs (_FieldSelected_). It only allows appending elements with unique coordinates. From the outside it's viewed as an array.
+
+This sounds like some kind of abstract data type (ADT) with a distinct API. Currently three functions are responsible for maintaining the data: _Reset_fields()_, _Check_for_occupied_field()_, and _Place_symbol_on_field()_. Of those I think checking and placing could be combined into something like _Append()_.
+
+Finally there is player identification. That, to me, belongs into the realm of the domain. It's encapsulating a game rule. For now the player changes after each field selection. But this could easily change. In that case only this function would need to be modified.
+
+For these responsibilities I'd like to introduce distinct classes:
+
+* Interactions
+* Gamerules
+* Fieldselections
+* Mapping
+
+And while being at it why not relieve _Main()_ of some responsibilities? I'll focus it on constructing classes and starting the application logic. The flow between dialog and interactions will be wired-up in dedicated class _App_.
+
+Here's the dependency graph (class diagram) for the resulting classes:
+
+![](images/interlude.png)
