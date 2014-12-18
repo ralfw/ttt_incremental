@@ -239,7 +239,7 @@ class Interactions {
   public Gamestate Draw(int coordinate);
   
   void Place_symbol(int coordinate);
-  Gamestate Generate_gamestate();
+  Gamestate Generate_gamestate(Players player);
   
   Players Identify_current_player();
 }
@@ -248,3 +248,36 @@ class Interactions {
 Although the enum seems to repeat what already is defined in _Fieldvalues_ it's not a violation of the DRY principle. The purpose of _Players_ and _Fieldvalues_ is different. The latter exists purely for the sake of the UI/dialog; the former, though, is an important part of the domain.
 
 This is also signified by the lack of an encoding for empty fields. There are no empty fields with regard to the domain. Empty fields are just a matter of a particular depiction of the game state.
+
+# Increment #7
+So far symbols placed by one player can be "overwritten" by the other. To prohibit this the analysis phase defined a feature "check if field is occupied". This now will be implemented - of course by adding a function(al unit) of its own.
+
+If the selected field is not occupied all's well. But if has been taken already an error message should be displayed as part of the game state.
+
+Game state generation thus needs two inputs: one for the current player and one for a status message.
+
+![](images/incr07.png)
+
+## Functions
+Implementing two inputs to a functional unit means splitting it up into two functions.
+
+But how to represent optional output from a functional unit like an error message? This is done by switching from _return_ to continuations to pass on output from a subprogram. Functions become procedures.
+
+```
+class Interactions {
+  List<FieldSelected> _fieldSelections;
+  
+  public Gamestate Start();
+  public Gamestate New_game();
+  public Gamestate Draw(int coordinate);
+  
+  void Place_symbol(int coordinate);
+  Gamestate Generate_gamestate_for_player(Players player);
+  Gamestate Generate_gamestate_for_status(string statusmsg);
+  
+  Players Identify_current_player();
+  void Check_for_occupied_field(int coordinate, 
+       Action onUnoccupied, 
+       Action<string> onOccupied);
+}
+```
