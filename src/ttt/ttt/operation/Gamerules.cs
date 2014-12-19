@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ttt.data;
 
@@ -41,11 +42,31 @@ namespace ttt.operation
 
         private void Check_player_win(Players player, Action onNoWin, Action<string> onWin)
         {
-            if (_fieldselections.Selections.Any(fs => fs.Coordinate == 4 && fs.Player == player))
-            {
-                var msg = string.Format("The winner is: {0}", player.ToString());
-                onWin(msg);
-            }
+            var coords = Get_player_coordinates(player);
+            Check_for_winning_lines(player, coords,
+                onNoWin,
+                onWin);
+        }
+
+        private IEnumerable<int> Get_player_coordinates(Players player)
+        {
+            return _fieldselections.Selections.Where(fs => fs.Player == player)
+                                              .Select(fs => fs.Coordinate)
+                                              .ToArray();
+        }
+
+        private readonly List<int[]> WINNING_LINES = new List<int[]> {
+                new[]{0,1,2}, new[]{3,4,5}, new[]{6,7,8},
+                new[]{0,3,6}, new[]{1,4,7}, new[]{2,5,8},
+                new[]{0,4,8}, new[]{2,4,6}
+            };
+
+        private void Check_for_winning_lines(Players player, IEnumerable<int> coords, 
+                                             Action onNoWin,
+                                             Action<string> onWin)
+        {
+            if (WINNING_LINES.Any(wl => !wl.Except(coords).Any()))
+                onWin("The winner: " + player);
             else
                 onNoWin();
         }
