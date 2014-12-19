@@ -347,3 +347,8 @@ To check if a player wins first his field coordinates need to be extracted from 
 This is done for player X, then for player O.
 
 ![](images/incr10.png)
+
+# The end
+After 10 short iterations here's the UI of the resulting application:
+
+![](images/tttdialog.png)
