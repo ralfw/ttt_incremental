@@ -29,12 +29,21 @@ namespace ttt.operation
                 onGameOver("Game over! Both win ;-)");
         }
 
+
         public void Check_for_win(Action onNoWin, Action<string> onWin)
         {
-            if (_fieldselections.Selections.Any(fs => fs.Coordinate == 4))
+            Check_player_win(Players.X, 
+                () => Check_player_win(Players.O, 
+                    onNoWin,
+                    onWin),
+                onWin);
+        }
+
+        private void Check_player_win(Players player, Action onNoWin, Action<string> onWin)
+        {
+            if (_fieldselections.Selections.Any(fs => fs.Coordinate == 4 && fs.Player == player))
             {
-                var msg = string.Format("The winner is: {0}", 
-                                        _fieldselections.Selections.First(fs => fs.Coordinate == 4).Player.ToString());
+                var msg = string.Format("The winner is: {0}", player.ToString());
                 onWin(msg);
             }
             else
