@@ -1,6 +1,6 @@
 ﻿using ttt.data;
 
-namespace ttt.integration
+namespace ttt.operation
 {
     class Mapping
     {

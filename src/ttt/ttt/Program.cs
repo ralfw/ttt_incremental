@@ -23,11 +23,10 @@ namespace ttt
             var fs = new Fieldselections();
             var gr = new Gamerules(fs);
             var map = new Mapping(fs);
-            var inter = new Interactions(fs, gr, map);
-            var dlg = new Dialog();
-            var app = new App(dlg, inter);
 
-            app.Run();
+            var inter = new Body(fs, gr, map);
+            var dlg = new Head(inter);
+
             Application.Run(dlg);
         }
     }

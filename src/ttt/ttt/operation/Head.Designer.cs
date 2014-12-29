@@ -1,6 +1,6 @@
-﻿namespace ttt
+﻿namespace ttt.operation
 {
-    partial class Dialog
+    partial class Head
     {
         /// <summary>
         /// Required designer variable.
@@ -166,7 +166,7 @@
             this.Controls.Add(this.btnField2);
             this.Controls.Add(this.btnField1);
             this.Controls.Add(this.btnField0);
-            this.Name = "Dialog";
+            this.Name = "Head";
             this.Text = "Tic Tac Toe";
             this.ResumeLayout(false);
             this.PerformLayout();
