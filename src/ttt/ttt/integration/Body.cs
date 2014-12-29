@@ -1,15 +1,16 @@
-﻿using ttt.data;
+﻿using System;
+using ttt.data;
 using ttt.operation;
 
 namespace ttt.integration
 {
-    class Interactions
+    class Body
     {
         private readonly Fieldselections _fieldselections;
         private readonly Gamerules _rules;
         private readonly Mapping _map;
 
-        public Interactions(Fieldselections fieldselections, Gamerules rules, Mapping map)
+        public Body(Fieldselections fieldselections, Gamerules rules, Mapping map)
         {
             _fieldselections = fieldselections;
             _rules = rules;
@@ -17,21 +18,22 @@ namespace ttt.integration
         }
 
 
-        public Gamestate Start()
+        public void Start()
         {
-            return New_game();
+            New_game();
         }
 
 
-        public Gamestate New_game()
+        public void New_game()
         {
             _fieldselections.Clear();
             var player = _rules.Identify_current_player();
-            return _map.To_gamestate_for(player);
+            var gs = _map.To_gamestate_for(player);
+            Gamestate_changed(gs);
         }
 
 
-        public Gamestate Draw(int coordinate)
+        public void Draw(int coordinate)
         {
             Gamestate gs = null;
             var player = _rules.Identify_current_player();
@@ -45,7 +47,10 @@ namespace ttt.integration
                         msg => { gs = _map.To_gamestate_for(msg); }),
                     msg => { gs = _map.To_gamestate_for(msg); }),
                 msg => { gs = _map.To_gamestate_for(msg); });
-            return gs;
+            Gamestate_changed(gs);
         }
+
+
+        public event Action<Gamestate> Gamestate_changed;
     }
 }

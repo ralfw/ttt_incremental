@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ttt.data;
+using ttt.integration;
 
-namespace ttt
+namespace ttt.operation
 {
-    public partial class Dialog : Form
+    partial class Head : Form
     {
+        private readonly Body _inter;
         private readonly Button[] _fieldbuttons;
 
 
-        public Dialog()
+        public Head(Body inter)
         {
+            _inter = inter;
+            _inter.Gamestate_changed += this.Display;
+
             InitializeComponent();
 
             _fieldbuttons = new[] {
@@ -25,12 +24,14 @@ namespace ttt
                     btnField3, btnField4, btnField5,
                     btnField6, btnField7, btnField8
                 };
+
+            _inter.Start();
         }
 
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            On_new_game_requested();
+            _inter.New_game();
         }
 
         private void btnField_clicked(object sender, EventArgs e)
@@ -38,7 +39,7 @@ namespace ttt
             var coord = _fieldbuttons.Select((b, i) => new {Button = b, Coord = i})
                                      .First(b => b.Button == sender)
                                      .Coord;
-            On_player_drew(coord);
+            _inter.Draw(coord);
         }
 
 
@@ -49,9 +50,5 @@ namespace ttt
                                         gamestate.Board.Fieldvalues[i] == Fieldvalues.X ? "X" : "O";
             lblMessage.Text = gamestate.Message;
         }
-
-
-        public event Action On_new_game_requested;
-        public event Action<int> On_player_drew;
     }
 }
