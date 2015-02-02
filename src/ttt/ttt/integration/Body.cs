@@ -38,9 +38,10 @@ namespace ttt.integration
             Gamestate gs = null;
             var player = _rules.Identify_current_player();
             _fieldselections.Append(player, coordinate,
-                () => _rules.Check_for_end_of_game(
-                    () => _rules.Check_for_win(
-                        () => {
+                () => _rules.Check_for_win(
+                    () => _rules.Check_for_end_of_game(
+                        () =>
+                        {
                             player = _rules.Identify_current_player();
                             gs = _map.To_gamestate_for(player);
                         },
